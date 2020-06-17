@@ -2,9 +2,9 @@ FROM ubuntu:18.04
 USER root
 WORKDIR /
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
-ENV http_proxy=http://proxy.jf.intel.com:911
-ENV https_proxy=http://proxy.jf.intel.com:911
-ENV no_proxy=10.221.123.161
+#ENV http_proxy=http://proxy.jf.intel.com:911
+#ENV https_proxy=http://proxy.jf.intel.com:911
+#ENV no_proxy=10.221.123.161
 # Creating user openvino
 RUN useradd -ms /bin/bash openvino && \
     chown openvino -R /home/openvino
