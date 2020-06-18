@@ -36,7 +36,7 @@ ENV PYTHON python3.6
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3-pip python3-dev && \
     rm -rf /var/lib/apt/lists/*
-ARG package_url=http://registrationcenter-download.intel.com/akdlm/irc_nas/16670/l_openvino_toolkit_dev_ubuntu18_p_2020.3.194.tgz
+ARG package_url=http://registrationcenter-download.intel.com/akdlm/irc_nas/16670/l_openvino_toolkit_p_2020.3.194.tgz
 ARG TEMP_DIR=/tmp/openvino_installer
 WORKDIR ${TEMP_DIR}
 ADD ${package_url} ${TEMP_DIR}
@@ -46,6 +46,7 @@ RUN tar -xzf ${TEMP_DIR}/*.tgz --strip 1
 RUN sed -i 's/decline/accept/g' silent.cfg && \
     ${TEMP_DIR}/install.sh -s silent.cfg && \
     ${INTEL_OPENVINO_DIR}/install_dependencies/install_openvino_dependencies.sh
+#RUN sed -i ${INTEL_OPENVINO_DIR}/install_dependencies/install_openvino_dependencies.sh
 WORKDIR /tmp
 RUN rm -rf ${TEMP_DIR}
 # installing dependencies for package
