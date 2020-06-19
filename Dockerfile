@@ -72,4 +72,6 @@ RUN find "${INTEL_OPENVINO_DIR}/" -name "*.*sh" -type f -exec dos2unix {} \;
 ADD IRs /home/openvino/IRs
 USER openvino
 WORKDIR ${INTEL_OPENVINO_DIR}
+RUN cd /opt/intel/openvino/deployment_tools/demo
+RUN ./demo_benchmark_app.sh
 CMD ["/bin/bash"]
