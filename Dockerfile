@@ -29,6 +29,7 @@ RUN apt-get update && \
 WORKDIR /thirdparty
 RUN sed -Ei 's/# deb-src /deb-src /' /etc/apt/sources.list && \
     apt-get update && \
+    apt-get -y install sudo && \
     apt-get source ${DEPENDENCIES} && \
     rm -rf /var/lib/apt/lists/*
 # setup Python
@@ -70,7 +71,8 @@ RUN if [ -f "${INTEL_OPENVINO_DIR}"/bin/setupvars.sh ]; then \
     fi;
 RUN find "${INTEL_OPENVINO_DIR}/" -name "*.*sh" -type f -exec dos2unix {} \;
 ADD IRs /home/openvino/IRs
-USER openvino
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+USER docker
 WORKDIR ${INTEL_OPENVINO_DIR}
 WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/demo
 RUN sudo ./demo_benchmark_app.sh
