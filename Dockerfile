@@ -72,6 +72,7 @@ RUN if [ -f "${INTEL_OPENVINO_DIR}"/bin/setupvars.sh ]; then \
 RUN find "${INTEL_OPENVINO_DIR}/" -name "*.*sh" -type f -exec dos2unix {} \;
 ADD IRs /home/openvino/IRs
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+RUN echo 'docker ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 USER docker
 WORKDIR ${INTEL_OPENVINO_DIR}
 WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/demo
