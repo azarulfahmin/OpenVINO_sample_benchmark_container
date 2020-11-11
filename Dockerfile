@@ -73,11 +73,11 @@ RUN find "${INTEL_OPENVINO_DIR}/" -name "*.*sh" -type f -exec dos2unix {} \;
 ADD IRs /home/openvino/IRs
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 RUN echo 'docker ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
-USER docker
+USER root
 WORKDIR ${INTEL_OPENVINO_DIR}
 WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/demo
 RUN touch /home/openvino/result.txt
-RUN sudo ./demo_benchmark_app.sh >> /home/openvino/result.txt
+RUN ./demo_benchmark_app.sh >> /home/openvino/result.txt
 RUN cat /home/openvino/result.txt
 USER root
 RUN apt-get update && apt-get install -y openssh-server
