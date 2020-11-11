@@ -77,6 +77,7 @@ USER docker
 WORKDIR ${INTEL_OPENVINO_DIR}
 WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/demo
 RUN sudo ./demo_benchmark_app.sh
+USER root
 RUN apt-get update && apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
 RUN echo 'root:Intel123!' | chpasswd
