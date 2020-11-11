@@ -76,7 +76,9 @@ RUN echo 'docker ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 USER docker
 WORKDIR ${INTEL_OPENVINO_DIR}
 WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/demo
-RUN sudo ./demo_benchmark_app.sh
+RUN touch result.txt
+RUN sudo ./demo_benchmark_app.sh >> result.txt
+RUN cat result.txt
 USER root
 RUN apt-get update && apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
