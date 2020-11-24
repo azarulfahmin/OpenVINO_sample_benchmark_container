@@ -90,7 +90,5 @@ RUN sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid
 
 ENV NOTVISIBLE="in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
-
-RUN scp /home/openvino/result.txt root@192.168.218.35:/usr/local/mesh
 EXPOSE 22
 CMD ["/bin/bash"]
