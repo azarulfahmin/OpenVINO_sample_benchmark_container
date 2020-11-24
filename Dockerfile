@@ -77,7 +77,7 @@ RUN touch /home/openvino/result.txt
 RUN ./demo_benchmark_app.sh >> /home/openvino/result.txt
 RUN cat /home/openvino/result.txt
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
-RUN ls 
+RUN ls ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
 RUN ls gst_launch
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch
 ADD 1080_720_mpeg_landscape.mpg ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch/
