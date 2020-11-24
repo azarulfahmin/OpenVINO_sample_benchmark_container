@@ -2,9 +2,6 @@ FROM ubuntu:18.04
 USER root
 WORKDIR /
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
-#ENV http_proxy=http://proxy.jf.intel.com:911
-#ENV https_proxy=http://proxy.jf.intel.com:911
-#ENV no_proxy=10.221.123.161
 # Creating user openvino
 RUN useradd -ms /bin/bash openvino && \
     chown openvino -R /home/openvino
@@ -79,7 +76,9 @@ WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/demo
 RUN touch /home/openvino/result.txt
 RUN ./demo_benchmark_app.sh >> /home/openvino/result.txt
 RUN cat /home/openvino/result.txt
-RUN ls ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
+WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
+RUN ls
+WORKDIR root
 USER root
 RUN apt-get update && apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
