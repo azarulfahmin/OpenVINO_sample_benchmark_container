@@ -80,8 +80,8 @@ WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
 RUN cat download_models.sh
 RUN ls ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
 RUN ls gst_launch
-WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch
-ADD 1080_720_mpeg_landscape.mpg ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch/
+WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch/face_detection_and_classification
+ADD 1080_720_mpeg_landscape.mpg ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch/face_detection_and_classification/
 RUN ./face_detection_and_classification.sh 1080_720_mpeg_landscape.mpg
 RUN ls
 WORKDIR root
