@@ -81,6 +81,8 @@ RUN ls
 RUN ls gst_launch
 RUN ./download_models.sh
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch
+ADD 1080_720_mpeg_landscape.mpg ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch/
+RUN ./face_detection_and_classification.sh 1080_720_mpeg_landscape.mpg
 RUN ls
 WORKDIR root
 USER root
