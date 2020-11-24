@@ -77,7 +77,9 @@ RUN touch /home/openvino/result.txt
 RUN ./demo_benchmark_app.sh >> /home/openvino/result.txt
 RUN cat /home/openvino/result.txt
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
-RUN ls
+RUN ls /benchmark
+RUN ls /gst_launch
+RUN ./download_models.sh
 WORKDIR root
 USER root
 RUN apt-get update && apt-get install -y openssh-server
