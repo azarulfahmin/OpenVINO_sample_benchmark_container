@@ -67,11 +67,13 @@ RUN if [ -f "${INTEL_OPENVINO_DIR}"/bin/setupvars.sh ]; then \
         printf "\nsource \${INTEL_OPENVINO_DIR}/bin/setupvars.sh\n" >> /root/.bashrc; \
     fi;
 RUN find "${INTEL_OPENVINO_DIR}/" -name "*.*sh" -type f -exec dos2unix {} \;
-RUN cd ${INTEL_OPENVINO_DIR}/deployment_tools/model_optimizer/install_prerequisites
-RUN sudo ./install_prerequisites.sh
 ADD IRs /home/openvino/IRs
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 RUN echo 'docker ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+USER docker
+WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/model_optimizer/install_prerequisites
+RUN ls ${INTEL_OPENVINO_DIR}/deployment_tools/model_optimizer/install_prerequisites
+RUN sudo ./install_prerequisites.sh
 USER root
 WORKDIR ${INTEL_OPENVINO_DIR}
 WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/demo
