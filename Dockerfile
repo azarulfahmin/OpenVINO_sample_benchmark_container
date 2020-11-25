@@ -98,6 +98,7 @@ RUN echo $MODELS_PATH
 RUN sed -i 's/"$MODELS_PATH"/"\/home\/docker\/intel\/dl_streamer\/models"/' download_models.sh
 RUN sed -i 's/${MODELS_PATH}/\/home\/docker\/intel\/dl_streamer\/models/' download_models.sh
 RUN sed -i 's/$INTEL_OPENVINO_DIR/"\/opt\/intel\/openvino"/' download_models.sh
+RUN sed -i 's/$MODELS_PATH/\/home\/docker\/intel\/dl_streamer\/models/' download_models.sh
 USER docker
 RUN cat download_models.sh
 RUN sudo ./download_models.sh
