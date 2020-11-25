@@ -102,7 +102,7 @@ RUN sed -i 's/$MODELS_PATH/\/home\/docker\/intel\/dl_streamer\/models/' download
 USER docker
 RUN cat download_models.sh
 RUN sudo ./download_models.sh
-USER root
+USER docker
 RUN source ${INTEL_OPENVINO_DIR}/bin/setupvars.sh
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch/face_detection_and_classification
 RUN sed '/0009/ a MODELS_PATH=/home/docker/intel/dl_streamer/models' face_detection_and_classification.sh
