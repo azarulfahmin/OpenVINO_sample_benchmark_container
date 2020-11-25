@@ -93,7 +93,7 @@ USER docker
 #RUN source ${INTEL_OPENVINO_DIR}/bin/setupvars.sh
 ENV MODELS_PATH /home/docker/intel/dl_streamer/models
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples
-#RUN export MODELS_PATH=$MODELS_PATH:/home/docker
+RUN export MODELS_PATH=$MODELS_PATH:/home/docker/intel/dl_streamer/models
 RUN echo $MODELS_PATH
 RUN sed -i 's/"$MODELS_PATH"/"\/home\/docker\/intel\/dl_streamer\/models"/' download_models.sh
 RUN cat download_models.sh
