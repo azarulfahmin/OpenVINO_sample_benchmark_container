@@ -83,7 +83,7 @@ USER docker
 WORKDIR ${INTEL_OPENVINO_DIR}
 WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/demo
 RUN sudo touch /home/openvino/result.txt
-RUN sudo ./demo_benchmark_app.sh >> /home/openvino/result.txt
+RUN sudo ./demo_benchmark_app.sh >> /home/docker/result.txt
 RUN cat /home/openvino/result.txt
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
 RUN cat download_models.sh
