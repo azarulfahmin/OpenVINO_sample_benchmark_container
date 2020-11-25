@@ -71,14 +71,19 @@ ADD IRs /home/openvino/IRs
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 RUN echo 'docker ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 USER docker
+RUN source ${INTEL_OPENVINO_DIR}/bin/setupvars.sh
 WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/model_optimizer/install_prerequisites
 RUN ls ${INTEL_OPENVINO_DIR}/deployment_tools/model_optimizer/install_prerequisites
 RUN sudo ./install_prerequisites.sh
-USER root
+USER docker
+RUN source ${INTEL_OPENVINO_DIR}/bin/setupvars.sh
+WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/demo
+RUN sudo ./demo_squeezenet_download_convert_run.sh
+USER docker
 WORKDIR ${INTEL_OPENVINO_DIR}
 WORKDIR ${INTEL_OPENVINO_DIR}/deployment_tools/demo
-RUN touch /home/openvino/result.txt
-RUN ./demo_benchmark_app.sh >> /home/openvino/result.txt
+RUN sudo touch /home/openvino/result.txt
+RUN sudo ./demo_benchmark_app.sh >> /home/openvino/result.txt
 RUN cat /home/openvino/result.txt
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
 RUN cat download_models.sh
