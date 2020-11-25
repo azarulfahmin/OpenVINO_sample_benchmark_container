@@ -89,13 +89,14 @@ WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
 RUN cat download_models.sh
 RUN ls ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
 RUN ls gst_launch
-USER docker
+USER root
 #RUN source ${INTEL_OPENVINO_DIR}/bin/setupvars.sh
 ENV MODELS_PATH /home/docker/intel/dl_streamer/models
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples
 RUN export MODELS_PATH=$MODELS_PATH:/home/docker/intel/dl_streamer/models
 RUN echo $MODELS_PATH
 RUN sed -i 's/"$MODELS_PATH"/"\/home\/docker\/intel\/dl_streamer\/models"/' download_models.sh
+USER docker
 RUN cat download_models.sh
 RUN sudo ./download_models.sh
 USER docker
