@@ -106,6 +106,7 @@ USER docker
 RUN source ${INTEL_OPENVINO_DIR}/bin/setupvars.sh
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch/face_detection_and_classification
 ADD 1080_720_mpeg_landscape.mpg ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch/face_detection_and_classification/
+RUN cat face_detection_and_classification.sh
 RUN sudo ./face_detection_and_classification.sh 1080_720_mpeg_landscape.mpg
 RUN ls
 WORKDIR root
