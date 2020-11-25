@@ -89,12 +89,14 @@ WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
 RUN cat download_models.sh
 RUN ls ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/
 RUN ls gst_launch
-USER docker
-RUN source ${INTEL_OPENVINO_DIR}/bin/setupvars.sh
+#USER docker
+#RUN source ${INTEL_OPENVINO_DIR}/bin/setupvars.sh
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples
-RUN export MODELS_PATH=$MODELS_PATH:/home/docker
-RUN echo $MODELS_PATH
-RUN sudo ./download_models.sh
+#RUN export MODELS_PATH=$MODELS_PATH:/home/docker
+#RUN echo $MODELS_PATH
+#RUN sudo ./download_models.sh
+RUN cat download_models.sh
+USER docker
 RUN source ${INTEL_OPENVINO_DIR}/bin/setupvars.sh
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch/face_detection_and_classification
 ADD 1080_720_mpeg_landscape.mpg ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples/gst_launch/face_detection_and_classification/
