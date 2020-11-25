@@ -92,6 +92,7 @@ RUN ls gst_launch
 USER docker
 RUN source ${INTEL_OPENVINO_DIR}/bin/setupvars.sh
 WORKDIR ${INTEL_OPENVINO_DIR}/data_processing/dl_streamer/samples
+RUN export $MODELS_PATH=/home/docker:$MODELS_PATH
 RUN echo $MODELS_PATH
 RUN sudo ./download_models.sh
 RUN source ${INTEL_OPENVINO_DIR}/bin/setupvars.sh
